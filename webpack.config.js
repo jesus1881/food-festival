@@ -3,65 +3,56 @@ const webpack = require('webpack');
 const BundleAnalyzerPlugin =
 require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const config = {
+module.exports = {
   entry: {
     app: './assets/js/script.js',
     events: './assets/js/events.js',
     schedule: './assets/js/schedule.js',
-    tickets: './assets/js/tickets.js'
+    tickets: './assets/js/tickets.js',
   },
   output: {
-    path: path.join(__dirname + "/dist"),
-    filename: "[name].bundle.js"
+    path: path.join(__dirname + '/dist'),
+    filename: '[name].bundle.js', //The name of each attribute in the entry object will be used in place of [name] in each bundle.js file that is created
   },
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif)$/i, //identify the type of files to pre-process
         use: [
           {
             loader: 'file-loader',
             options: {
-              esModule: false,
+              esModule: false, //for img file names
               name(file) {
                 return '[path][name].[ext]';
               },
-              publicPath(url) {
+              publicPath: function (url) {
                 return url.replace('../', '/assets/');
-              }
-            }
+              },
+            },
           },
           {
-            loader: 'image-webpack-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'image-webpack-loader',
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: 'static'
-    })
-    // new WebpackPwaManifest({
-    //   name: "Food Event",
-    //   short_name: "Foodies",
-    //   description: "An app that allows you to view upcoming food events.",
-    //   background_color: "#01579b",
-    //   theme_color: "#ffffff",
-    //   fingerprints: false,
-    //   inject: false,
-    //   icons: [{
-    //     src: path.resolve("assets/img/icons/icon-512x512.png"),
-    //     sizes: [96, 128, 192, 256, 384, 512],
-    //     destination: path.join("assets", "icons")
-    //   }]
-    // })
+      analyzerMode: 'static', // the report outputs to an HTML file in the dist folder
+    }),
   ],
-  mode: 'development'
+  devServer: {
+    static: {
+      directory: path.join(__dirname, './'),
+    },
+    compress: true,
+    port: 8080,
+  },
+  mode: 'development',
 };
-
-module.exports = config;

@@ -1,14 +1,15 @@
 {
   "name": "food-festival",
   "version": "1.0.0",
-  "description": "",
-  "main": "assets/js/scipt.js",
+  "description": "Application to demonstrate PWA",
+  "main": "./assets/js/script.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch",
     "build": "webpack",
-    "start:dev": "webpack-dev-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "webpack-dev-server"
   },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jesus1881/food-festival.git"
@@ -18,20 +19,5 @@
   "bugs": {
     "url": "https://github.com/jesus1881/food-festival/issues"
   },
-  "homepage": "https://github.com/jesus1881/food-festival#readme",
-  "dependencies": {
-    "bootstrap": "^4.3.1",
-    "image-webpack-loader": "^8.1.0",
-    "jquery": "^3.6.0",
-    "popper.js": "^1.16.0",
-    "save": "^2.5.0"
-  },
-  "devDependencies": {
-    "file-loader": "^6.2.0",
-    "webpack": "^5.73.0",
-    "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.9.1"
-  },
-  "keywords": []
+  "homepage": "https://github.com/jesus1881/food-festival#readme"
 }
