@@ -11,32 +11,32 @@ module.exports = {
     tickets: './assets/js/tickets.js',
   },
   output: {
-    path: path.join(__dirname + '/dist'),
-    filename: '[name].bundle.js', //The name of each attribute in the entry object will be used in place of [name] in each bundle.js file that is created
+    filename: "[name].bundle.js",
+    path: __dirname + "/dist"
   },
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif)$/i, //identify the type of files to pre-process
+        test: /\.jpg$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              esModule: false, //for img file names
+              esModule: false,
               name(file) {
                 return '[path][name].[ext]';
               },
-              publicPath: function (url) {
+              publicPath: function(url) {
                 return url.replace('../', '/assets/');
-              },
-            },
+              }
+            }
           },
           {
-            loader: 'image-webpack-loader',
-          },
-        ],
-      },
-    ],
+            loader: 'image-webpack-loader'
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new webpack.ProvidePlugin({

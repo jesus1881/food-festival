@@ -1,7 +1,7 @@
 require('bootstrap');
 const createEl = require("./domMethods");
 
-if (window.location.href.indexOf("tickets") > -1) {
+$(document).ready(function()  {
 
   const purchaseBtn = document.getElementById("purchaseBtn");
   const purchaseEmail = document.getElementById("purchaseEmail");
@@ -23,4 +23,4 @@ if (window.location.href.indexOf("tickets") > -1) {
     
   }
   purchaseBtn.addEventListener("click", purchaseTicket);
-}
+});
